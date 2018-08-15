@@ -1,0 +1,29 @@
+#!/bin/sh
+
+pypkgs=(
+neovim
+python-language-server
+vim-vint
+yamllint
+)
+
+for pkg in ${pypkgs[@]}; do
+    pip install $pkg --user
+done
+
+jspkgs=(
+babel-eslint
+eslint
+eslint-plugin-html
+eslint-plugin-vue
+javascript-typescript-langserver
+prettier
+pug-lint
+stylelint
+svgo
+vue-language-server
+)
+
+for pkg in ${jspkgs[@]}; do
+    npm install $pkg
+done

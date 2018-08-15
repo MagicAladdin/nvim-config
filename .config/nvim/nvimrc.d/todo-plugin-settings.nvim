@@ -1,0 +1,337 @@
+scriptencoding utf8
+
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+
+" indent guides
+let g:indent_guides_default_mapping = 0
+let g:indent_guides_auto_colors = 0
+highlight IndentGuidesOdd guibg=red ctermbg=234
+highlight IndentGuidesEven guibg=green ctermbg=236
+
+" Detect indent settings
+let g:detectindent_preferred_expandtab = 1
+let g:detectindent_preferred_indent = 4
+"autocmd BufReadPost * :Detectindent
+
+" NERDTree modifications
+let NERDTreeChDirMode=2
+
+" Ale settings
+let g:ale_echo_msg_format = '[%linter%] %s% (code)% [%severity%]'
+let g:ale_linters = {
+    \ 'tex': ['alex', 'proselint', 'chktex', 'write-good', 'vale'],
+    \ 'python': ['flake8'],
+    \ }
+let g:ale_lint_on_text_changed = 'never'
+highlight ALEError cterm=undercurl ctermfg=196
+highlight ALEInfo cterm=undercurl ctermfg=14
+
+" Deoplete settings
+let g:deoplete#enable_at_startup = 1
+
+" let g:deoplete#enable_camel_case = 1
+call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
+
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_omnicppcomplete_compliance = 0
+let g:clang_make_default_keymappings = 0
+let g:clang_use_library = 1
+let g:clang_complete_macros = 1
+let g:clang_auto_user_options = 'compile_commands.json'
+" let g:clang_complete_patterns = 1
+
+" Language server
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'cpp': ['clangd'],
+    \ 'java': ['jdtls', '-data', getcwd(), '-Dlog.level=ALL'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'html': ['html-languageserver', '--stdio'],
+    \ 'css': ['css-languageserver', '--stdio'],
+    \ 'json': ['json-languageserver', '--stdio'],
+    \ }
+
+let g:LanguageClient_autoStart = 1
+
+" Denite settings
+" git file source
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+call denite#custom#var('file_rec/git', 'command',
+    \ ['git', 'ls-files', '-co', '--exclude-standard'])
+" git grep source
+call denite#custom#alias('source', 'grep/git', 'grep')
+call denite#custom#var('grep/git', 'command',
+    \ ['git'])
+call denite#custom#var('grep/git', 'default_opts',
+        \ ['grep', '-n', '-P'])
+call denite#custom#var('grep/git', 'recursive_opts', ['--recurse-submodules'])
+call denite#custom#var('grep/git', 'pattern_opt', ['-e'])
+call denite#custom#var('grep/git', 'separator', ['--'])
+call denite#custom#var('grep/git', 'final_opts', ['.'])
+
+" Maps for navigating entries up and downwards
+call denite#custom#map(
+    \ 'insert',
+    \ '<Down>',
+    \ '<denite:move_to_next_line>',
+    \ 'noremap'
+    \)
+call denite#custom#map(
+    \ 'insert',
+    \ '<C-j>',
+    \ '<denite:move_to_next_line>',
+    \ 'noremap'
+    \)
+call denite#custom#map(
+    \ 'insert',
+    \ '<C-n>',
+    \ '<denite:move_to_next_line>',
+    \ 'noremap'
+    \)
+call denite#custom#map(
+    \ 'insert',
+    \ '<Up>',
+    \ '<denite:move_to_previous_line>',
+    \ 'noremap'
+    \)
+call denite#custom#map(
+    \ 'insert',
+    \ '<C-k>',
+    \ '<denite:move_to_previous_line>',
+    \ 'noremap'
+    \)
+call denite#custom#map(
+    \ 'insert',
+    \ '<C-p>',
+    \ '<denite:move_to_previous_line>',
+    \ 'noremap'
+    \)
+
+" lru sorting for buffers
+call denite#custom#source('buffer', 'sorters', [])
+
+" better colors
+call denite#custom#option('_', 'highlight_mode_insert', 'CursorLine')
+call denite#custom#option('_', 'highlight_matched_range', 'None')
+call denite#custom#option('_', 'highlight_matched_char', 'None')
+
+" disable spell checking here
+autocmd vimrc FileType denite setlocal nospell
+
+" disable line numbers in terminal
+autocmd vimrc TermOpen * setlocal nonumber norelativenumber
+
+" Taboo settings
+let g:taboo_tabline = 0
+
+" JSON highlighting settings
+let g:vim_json_syntax_conceal=0 " do not remove double quotes in view
+
+" InstantRst settings
+" let g:instant_rst_browser='chromium-browser'
+let g:instant_rst_bind_scroll=0
+
+" Latex settings
+let g:tex_flavor = "latex"
+let g:Tex_DefaultTargetFormat="pdf"
+let g:Tex_IgnoredWarnings=''
+
+" Signify
+let g:signify_vcs_list = [ 'git', 'svn', 'hg' ]
+autocmd vimrc User Fugitive SignifyRefresh
+
+" Vim-slime
+let g:slime_target="tmux"
+let g:slime_python_ipython=1
+let g:slime_no_mappings=1
+nmap <c-c><c-f> vaf :SlimeSend<CR>
+nmap <c-c><c-c> vac :SlimeSend<CR>
+nmap <c-c><c-l> V :SlimeSend<CR>
+nmap <c-c><c-p> vip :SlimeSend<CR>
+xmap <c-c><c-c> :SlimeSend<CR>
+
+" Python folding
+let g:SimpylFold_docstring_preview=1
+
+" fix editing modes to file types
+autocmd vimrc BufRead,BufNewFile rsb.conf set filetype=dosini
+autocmd vimrc BufRead,BufNewFile *.project set filetype=json
+autocmd vimrc BufRead,BufNewFile *.template set filetype=json
+autocmd vimrc BufRead,BufNewFile *.distribution set filetype=json
+autocmd vimrc BufRead,BufNewFile *.ics set filetype=icalendar
+autocmd vimrc BufRead,BufNewFile *.bbx set filetype=tex
+autocmd vimrc BufRead,BufNewFile *.cbx set filetype=tex
+autocmd vimrc BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd vimrc BufNewFile,BufReadPost *.md.erb set filetype=markdown
+
+" key bindings to open navigation aids
+nmap <leader>n :NERDTreeToggle <CR>
+map <leader>t :TagbarToggle <CR>
+map <leader>u :MundoToggle <CR>
+map <leader>i :IndentGuidesToggle <CR>
+map <leader>b :Denite buffer <CR>
+map <leader>r :Denite -resume <CR>
+map <leader>p :DeniteProjectDir buffer file_rec <CR>
+map <leader>g :Denite buffer file_rec/git <CR>
+map <leader>e :Denite grep/git <CR>
+map <leader>vp :Gpull --rebase<CR>
+map <leader>vu :Gpush<CR>
+map <leader>vs :Gstatus <CR>
+
+" l used by latex
+
+map <leader>sh :call LanguageClient_textDocument_hover()<CR>
+map <leader>sd :call LanguageClient_textDocument_definition()<CR>
+map <leader>sr :call LanguageClient_textDocument_rename()<CR>
+map <leader>ss :Denite documentSymbol<CR>
+map <leader>se :Denite references<CR>
+map <leader>sw :Denite workspaceSymbol<CR>
+nmap <leader>sf :call LanguageClient_textDocument_formatting()<CR>
+vmap <leader>sf :call LanguageClient_textDocument_rangeFormatting()<CR>
+map <leader>sa :call LanguageClient_textDocument_codeAction()<CR>
+
+map <leader>c :Denite command<CR>
+
+map <leader>w :w<CR>
+
+" UltiSnips settings
+let g:UltiSnipsEditSplit = "context"
+let g:UltiSnipsSnippetsDir = "~/.config/nvim/UltiSnips"
+let g:UltiSnipsListSnippets = "<A-tab>"
+
+" settings for neovim terminals
+if has('nvim')
+    autocmd vimrc TermOpen * setlocal nospell
+    autocmd vimrc TermOpen * set bufhidden=hide
+    command! Fish :terminal fish
+    autocmd vimrc BufEnter * if &buftype == 'terminal' | :startinsert | endif
+    set scrollback=-1
+    tnoremap <A-h> <C-\><C-n><C-w>h
+    tnoremap <A-j> <C-\><C-n><C-w>j
+    tnoremap <A-k> <C-\><C-n><C-w>k
+    tnoremap <A-l> <C-\><C-n><C-w>l
+endif
+
+" Handle tmux $TERM quirks in vim
+map <Esc>OH <Home>
+map! <Esc>OH <Home>
+map <Esc>OF <End>
+map! <Esc>OF <End>
+
+" make vimtex work with neovim
+if has('nvim')
+    let g:vimtex_compiler_progname = 'nvr'
+endif
+let g:vimtex_view_use_temp_files = 2
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_quickfix_mode = 0 " do not open the quickfix window automatically
+
+" java completion
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+" deoplete completion for LaTeX
+if !exists('g:deoplete#omni#input_patterns')
+    let g:deoplete#omni#input_patterns = {}
+endif
+let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
+
+" function to explain the different highlights for spelling errors
+function! s:SpellLegend()
+    for [l:group, l:explanation] in [
+    \   ['SpellBad', 'word not recognized'],
+    \   ['SpellCap', 'word not capitalized'],
+    \   ['SpellRare', 'rare word'],
+    \   ['SpellLocal', 'wrong spelling for selected region']
+    \]
+        echo ''
+        echon l:group . "\t"
+        execute 'echohl' l:group
+        echon 'xxx'
+        echohl None
+        echon "\t" . l:explanation
+    endfor
+endfunction
+command! -bar SpellLegend call s:SpellLegend()
+
+
+" Status line
+set laststatus=2
+
+" delimitMate
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+
+" NERD Commenter
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDCommentEmptyLines = 1
+
+" Vim Better Whitespace
+autocmd BufWritePre * StripWhitespace
+let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help', 'markdown', 'mail']
+
+" TagbarToggle <F8>
+nmap <F8> :TagbarToggle<CR>
+
+" Vimwiki
+let g:vimwiki_list = [{
+  \ 'path': '~/vimwiki',
+  \ 'template_path': '~/vimwiki/templates/',
+  \ 'template_default': 'default',
+  \ 'syntax': 'markdown',
+  \ 'ext': '.md',
+  \ 'path_html': '~/vimwiki/site_html/',
+  \ 'custom_wiki2html': 'wiki2html.sh',
+  \ 'template_ext': '.tpl',
+  \ 'use_calendar': 1,
+  \ 'auto_toc': 1,
+  \ 'autochdir': 1,
+  \ 'auto_tags': 1}]
+
+autocmd FileType vimwiki call SetMarkdownOptions()
+
+function! SetMarkdownOptions()
+  call VimwikiSet('syntax', 'markdown')
+  call VimwikiSet('custom_wiki2html', 'wiki2html.sh')
+endfunction
+
+" Calendar
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+
+" Task-Warrior
+let g:task_log_directory   = '~/.task'
+
+" default task report type
+let g:task_report_name     = 'next'
+" custom reports have to be listed explicitly to make them available
+let g:task_report_command  = []
+" whether the field under the cursor is highlighted
+let g:task_highlight_field = 1
+" can not make change to task data when set to 1
+let g:task_readonly        = 0
+" vim built-in term for task undo in gvim
+let g:task_gui_term        = 1
+" allows user to override task configurations. Seperated by space. Defaults to ''
+let g:task_rc_override     = 'rc.defaultwidth=999'
+" default fields to ask when adding a new task
+let g:task_default_prompt  = ['due', 'description']
+" whether the info window is splited vertically
+let g:task_info_vsplit     = 0
+" info window size
+let g:task_info_size       = 15
+" info window position
+let g:task_info_position   = 'belowright'
+" directory to store log files defaults to taskwarrior data.location
+let g:task_log_directory   = '~/.log/taskwarrior.log'
+" max number of historical entries
+let g:task_log_max         = '20'
+" forward arrow shown on statusline
+let g:task_left_arrow      = ' <<'
+" backward arrow ...
+let g:task_left_arrow      = '>> '
+
+" vim:fenc=utf-8:ft=vim:tw=200:sts=2:sw=2:et:foldmethod=marker:
