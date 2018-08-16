@@ -1,1 +1,4 @@
-.netwhist
+.config/nvim/.netwhist
+.nvim
+.nvimrc
+

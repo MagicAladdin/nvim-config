@@ -21,7 +21,6 @@ Plug 'kylef/apiblueprint.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tyru/caw.vim'
 Plug 'ctrlpvim/ctrlp.vim'          " CtrlP is installed to support tag finding in vim-go
-Plug 'itchyny/calendar.vim'
 Plug 'JulesWang/css.vim'
 Plug 'Rip-Rip/clang_complete'
 Plug 'Shougo/context_filetype.vim'
@@ -129,7 +128,7 @@ for g:rc in split(glob('~/.nvim/nvimrc.d/*.vim'), '\n')
 endfor
 
 " Source plugin configurations
-for g:rc in split(glob('~/.vim/vimrc.d/pluginrc.d/*.vim'), '\n')
+for g:rc in split(glob('~/.nvim/pluginrc.d/*.vim'), '\n')
   exe 'source' rc
 endfor
 
