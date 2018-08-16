@@ -1,4 +1,4 @@
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_theme='oceanicnext'
 
 if !exists('g:airline_symbols')
@@ -45,8 +45,8 @@ let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#branch#enabled = 0
 " already done by another plugin
 let g:airline#extensions#whitespace#checks =[' indent', 'mixed-indent-file']
-let g:airline_left_sep = '▙'
-let g:airline_right_sep = '▟'
+"let g:airline_left_sep = '▙'
+"let g:airline_right_sep = '▟'
 " make things more compact
 let g:airline_mode_map = {
     \ '__': '-',
