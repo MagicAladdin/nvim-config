@@ -11,18 +11,6 @@ let g:detectindent_preferred_expandtab = 1
 let g:detectindent_preferred_indent = 4
 "autocmd BufReadPost * :Detectindent
 
-" NERDTree modifications
-let NERDTreeChDirMode=2
-
-" Ale settings
-let g:ale_echo_msg_format = '[%linter%] %s% (code)% [%severity%]'
-let g:ale_linters = {
-    \ 'tex': ['alex', 'proselint', 'chktex', 'write-good', 'vale'],
-    \ 'python': ['flake8'],
-    \ }
-let g:ale_lint_on_text_changed = 'never'
-highlight ALEError cterm=undercurl ctermfg=196
-highlight ALEInfo cterm=undercurl ctermfg=14
 
 " Deoplete settings
 let g:deoplete#enable_at_startup = 1
@@ -39,19 +27,6 @@ let g:clang_complete_macros = 1
 let g:clang_auto_user_options = 'compile_commands.json'
 " let g:clang_complete_patterns = 1
 
-" Language server
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'cpp': ['clangd'],
-    \ 'java': ['jdtls', '-data', getcwd(), '-Dlog.level=ALL'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'html': ['html-languageserver', '--stdio'],
-    \ 'css': ['css-languageserver', '--stdio'],
-    \ 'json': ['json-languageserver', '--stdio'],
-    \ }
-
-let g:LanguageClient_autoStart = 1
 
 " Denite settings
 " git file source

@@ -1,7 +1,7 @@
-" $Id: ale.vim wandsas 2018/07/18
+" $Id: ale.vim wansas 2018/07/18
 
 let g:ale_sign_column_always = 1
-let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_change = 'never'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:airline#extensions#ale#enabled = 1

@@ -1,3 +1,26 @@
+" Language server
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'cpp': ['clangd'],
+    \ 'java': ['jdtls', '-data', getcwd(), '-Dlog.level=ALL'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'html': ['html-languageserver', '--stdio'],
+    \ 'css': ['css-languageserver', '--stdio'],
+    \ 'json': ['json-languageserver', '--stdio'],
+    \ }
+
+let g:LanguageClient_autoStart = 1
+
+
+
+
+
+
+
+
+
+
 let g:LanguageClient_serverCommands = {
     \ 'cpp': ['cquery'],
     \ 'css': ['css-languageserver', '--stdio'],
