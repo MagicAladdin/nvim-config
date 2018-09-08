@@ -46,6 +46,7 @@ Plug 'zchee/deoplete-jedi' , { 'for': 'go' }
 Plug 'Shougo/echodoc'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim', { 'for': ['html', 'vue'] }
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 Plug 'junegunn/fzf', { 'dir': '~/.go/src/github.com/junegunn/fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'BurningEther/iron.nvim', { 'do': ':UpdateRemotePlugins' }

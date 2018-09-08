@@ -25,7 +25,7 @@ augroup filetypes
     autocmd FileType vue syntax sync fromstart
 
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} setlocal ft=markdown
-    autocmd BufNewFile,BufRead *.md setlocal spell spelllang=en_US
+    autocmd BufNewFile,BufRead *.md setlocal spell spelllang=en_gb
     autocmd BufNewFile,BufRead *.js set local ft=javascript
     autocmd BufNewFile,BufRead *.bash setlocal ft=bash
     autocmd BufNewFile,BufRead *.zsh setlocal ft=zsh
