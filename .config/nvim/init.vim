@@ -124,12 +124,12 @@ filetype plugin indent on
 syntax on
 
 " Source configurations
-for g:rc in split(glob('~/.nvim/nvimrc.d/*.vim'), '\n')
+for g:rc in split(glob('~/.config/nvim/nvimrc.d/*.vim'), '\n')
   exe 'source' rc
 endfor
 
 " Source plugin configurations
-for g:rc in split(glob('~/.nvim/pluginrc.d/*.vim'), '\n')
+for g:rc in split(glob('~/.config/nvim/pluginrc.d/*.vim'), '\n')
   exe 'source' rc
 endfor
 
